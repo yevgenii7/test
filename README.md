@@ -3,7 +3,7 @@
 ### Развёртывание
 - клонировать репозиторий и установить зависимости с помощь composer: </br>
 git clone https://github.com/yevgenii7/test.git </br>
-composer instal</br>
+composer instal (composer update - если будет ошибка при composer instal)</br>
 - прописать настройки соединения с бд и выполнить миграции </br>
 php yii migrate</br>
 - выполнить миграции необходимые для rbac</br>
