@@ -8,7 +8,6 @@
 namespace app\commands;
 
 use yii\console\Controller;
-use app\services\DataParserInterface;
 use app\services\JsonDataParser;
 use app\services\DummyService;
 
@@ -17,18 +16,11 @@ class DummyResourceController extends Controller
     private $dummyService;
     private $dataParser;
 
-    //этот вариант отдаёт ошибку, возможно из-за версии (нужна php >8.0)
-//    public function __construct(string $id, DataParserInterface $dataParser, $module = null)
-//    {
-//        $this->dataParser = $dataParser;
-//        parent::__construct($id, $module);
-//    }
-    
-    // т.к. работал с сервером на php 7.4 - пришлось сделать такую реализацию
-    public function __construct(string $id, $module = null)
+    // внедрение зависимостей
+    public function __construct(string $id, $module, DummyService $dummyService, JsonDataParser $dataParser)
     {
-        $this->dummyService = new DummyService();
-        $this->dataParser   = new JsonDataParser();
+        $this->dummyService = $dummyService;
+        $this->dataParser   = $dataParser;
         parent::__construct($id, $module);
     }
 
